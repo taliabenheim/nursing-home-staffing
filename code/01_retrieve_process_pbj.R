@@ -126,4 +126,4 @@ for (i in seq_along(base_urls)) {
 final_df <- bind_rows(all_quarters_data)
 
 # Save CSV
-write.csv(final_df, "data/intermediate/monthly_pbj", row.names = FALSE)
+write.csv(final_df, "data/intermediate/monthly_pbj.csv", row.names = FALSE)

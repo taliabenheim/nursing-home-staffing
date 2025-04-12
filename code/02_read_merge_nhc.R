@@ -28,7 +28,7 @@ df_prov <- df_prov %>%
   )
 
 # Collapse aggregated PBJ to facility level (one row per facility)
-df_pbj <- read.csv("data/intermediate/monthly_pbj")
+df_pbj <- read.csv("data/intermediate/monthly_pbj.csv")
 agg_pbj <- df_pbj %>%
     group_by(PROVNUM) %>%
     summarize(
@@ -42,4 +42,4 @@ agg_pbj <- df_pbj %>%
 merged_nhc_pbj <- merge(agg_pbj, df_prov, by = "PROVNUM", all.y = TRUE)
 
 # Save CSV
-write.csv(merged_nhc_pbj, "data/intermediate/merged_nhc_pbj", row.names = FALSE)
+write.csv(merged_nhc_pbj, "data/intermediate/merged_nhc_pbj.csv", row.names = FALSE)
