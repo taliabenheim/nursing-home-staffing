@@ -9,7 +9,10 @@ df_prov <- df_prov %>%
   select(
     PROVNUM = CMS.Certification.Number..CCN.,
     fac_name = Provider.Name,
+    county = County.Parish,
+    state = State,
     ownership = Ownership.Type,
+    hospbase = Provider.Resides.in.Hospital,
     n_cert_beds = Number.of.Certified.Beds,
     qm_rating = QM.Rating,
     overall_rating = Overall.Rating,
@@ -35,7 +38,8 @@ agg_pbj <- df_pbj %>%
         avg_share_hrs_all = mean(share_hrs_all, na.rm = TRUE),
         avg_share_hrs_rn = mean(share_hrs_rn, na.rm = TRUE),
         avg_share_hrs_lpn = mean(share_hrs_lpn, na.rm = TRUE),
-        avg_share_hrs_cna = mean(share_hrs_cna, na.rm = TRUE)
+        avg_share_hrs_cna = mean(share_hrs_cna, na.rm = TRUE),
+        months_contract = sum(share_hrs_all > 0, na.rm = TRUE)
     )
 
 # Merge NHC to PBJ 1:1 on provider ID
