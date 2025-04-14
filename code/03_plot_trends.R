@@ -36,7 +36,7 @@ combined_plot <- ggplot(df_long, aes(x = year_month, y = share_hrs, group = PROV
     labs(
         x = "Month",
         y = "Share of Contract Staffing Hours",
-        title = "Share of Contract Staffing Hours in 60 Randomly Selected Facilities, by Type"
+        title = "Monthly Share of Contract Staffing Hours in 60 Randomly Selected Facilities, by Staff Type"
     ) +
     theme_minimal() +
     theme(
