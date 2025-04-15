@@ -52,4 +52,4 @@ combined_plot <- ggplot(df_long, aes(x = year_month, y = share_hrs, group = PROV
 print(combined_plot)
 
 # Save combined plot
-ggsave("output/figure1.png", plot = combined_plot, width = 14, height = 10, units = "in", dpi = 300)
+ggsave("output/combined_trends.png", plot = combined_plot, width = 14, height = 10, units = "in", dpi = 300)
