@@ -37,7 +37,7 @@ writeLines(summary_table_quartiles, "output/table2.md")
 # Table 3 (quartiles of contract staffing duration)
 summary_table_duration <- create_summary_table(
   df,
-  grouping_var = share_hrs_all_quartile,
+  grouping_var = months_contract_quartile,
   caption = "Facility characteristics by quartile of contract staffing months, mean (SE)",
   col_names = c("", "Q1", "Q2", "Q3", "Q4")
 )
