@@ -23,7 +23,7 @@ create_summary_table <- function(df, grouping_var, caption, col_names = NULL) {
       ),
       # Binary vars: percentage (SE)
       across(
-        c(hospbase_num, for_profit),
+        c(for_profit),
         ~ paste0(
             sprintf("%.2f", mean(.x, na.rm = TRUE) * 100), 
             " (", sprintf("%.2f", sd(.x, na.rm = TRUE) * 100 / sqrt(sum(!is.na(.x)))), ")"
@@ -57,13 +57,12 @@ create_summary_table <- function(df, grouping_var, caption, col_names = NULL) {
         avg_lpn_hprd = "LPN Hours per Resident Day",
         avg_rn_hprd = "RN Hours per Resident Day",
         avg_n_cert_beds = "Number of Certified Beds",
-        avg_overall_rating = "Overall Star Rating",
-        avg_qm_rating = "Quality Measure Rating",
-        avg_staffing_rating = "Staffing Rating",
-        avg_health_inspection_rating = "Health Inspection Rating",
-        avg_nursing_staff_turnover = "Nursing Staff Turnover",
-        avg_rn_turnover = "RN Turnover",
-        hospbase_num_percent = "% Hospital-Affiliated",
+        avg_overall_rating = "Overall Star Rating (1-5)",
+        avg_qm_rating = "Quality Measure Rating (1-5)",
+        avg_staffing_rating = "Staffing Rating (1-5)",
+        avg_health_inspection_rating = "Health Inspection Rating (1-5)",
+        avg_nursing_staff_turnover = "% Nursing Staff Turnover",
+        avg_rn_turnover = "% RN Turnover",
         for_profit_percent = "% For-Profit"
       ),
       Category = factor(
@@ -72,16 +71,15 @@ create_summary_table <- function(df, grouping_var, caption, col_names = NULL) {
           "Share of Contract Hours",
           "Months of Contract Staffing (Max. 15)",
           "Number of Certified Beds",
-          "Overall Star Rating",
-          "Quality Measure Rating",
-          "Staffing Rating",
-          "Health Inspection Rating",
+          "Overall Star Rating (1-5)",
+          "Quality Measure Rating (1-5)",
+          "Staffing Rating (1-5)",
+          "Health Inspection Rating (1-5)",
           "RN Hours per Resident Day",
           "LPN Hours per Resident Day",
           "NA Hours per Resident Day",
-          "Nursing Staff Turnover",
-          "RN Turnover",
-          "% Hospital-Affiliated",
+          "% Nursing Staff Turnover",
+          "% RN Turnover",
           "% For-Profit"
         )
       )

@@ -20,7 +20,7 @@ df <- read_csv("data/intermediate/merged_nhc_pbj.csv", show_col_types = FALSE) %
 summary_table_binary <- create_summary_table(
   df,
   grouping_var = any_contract,
-  caption = "Mean (SD) Characteristics by Contract Staffing Use",
+  caption = "Facility characteristics by contract staffing use, mean (SE)",
   col_names = c("", "None", "Any")
 )
 writeLines(summary_table_binary, "output/table1.md")
@@ -29,7 +29,7 @@ writeLines(summary_table_binary, "output/table1.md")
 summary_table_quartiles <- create_summary_table(
   df,
   grouping_var = share_hrs_all_quartile,
-  caption = "Mean (SD) Characteristics by Quartile of Share of Contract Staffing Hours",
+  caption = "Facility characteristics by quartile of share of contract staffing hours, mean (SE)",
   col_names = c("", "Q1", "Q2", "Q3", "Q4")
 )
 writeLines(summary_table_quartiles, "output/table2.md")
@@ -38,7 +38,7 @@ writeLines(summary_table_quartiles, "output/table2.md")
 summary_table_duration <- create_summary_table(
   df,
   grouping_var = share_hrs_all_quartile,
-  caption = "Mean (SD) Characteristics by Quartile of Contract Staffing Months",
+  caption = "Facility characteristics by quartile of contract staffing months, mean (SE)",
   col_names = c("", "Q1", "Q2", "Q3", "Q4")
 )
 writeLines(summary_table_duration, "output/table3.md")
