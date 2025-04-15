@@ -53,3 +53,31 @@ print(combined_plot)
 
 # Save combined plot
 ggsave("output/combined_trends.png", plot = combined_plot, width = 14, height = 10, units = "in", dpi = 300)
+
+# Plot share of contract staffing overall
+df_long_overall <- df_long %>%
+    filter(staff_type %in% "share_hrs_all")
+
+overall_plot <- ggplot(df_long_overall, aes(x = year_month, y = share_hrs, group = PROVNUM, color = PROVNUM)) +
+    geom_line() +
+    ylim(0, 1) +
+    labs(
+        x = "Month",
+        y = "Share of Contract Staffing Hours",
+        title = "Monthly Share of Contract Staffing Hours in 60 Randomly Selected Facilities"
+    ) +
+    theme_minimal() +
+    theme(
+        legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
+        strip.text = element_text(size = 10, face = "bold"),
+        panel.grid = element_blank(),
+        panel.border = element_rect(color = "black", fill = NA)
+    ) +
+    scale_x_discrete(expand = c(0, 0)) +
+    scale_y_continuous(expand = c(0, 0))
+
+print(overall_plot)
+
+# Save overall plot
+ggsave("output/overall_trends.png", plot = overall_plot, width = 14, height = 10, units = "in", dpi = 300)
