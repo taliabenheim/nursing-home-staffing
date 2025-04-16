@@ -6,7 +6,7 @@ This repository contains data and code for visualizing monthly and geographic tr
 
 This project generates:
 1. A **figure** showing monthly trends in nursing home contract staffing over time in a small sample of facilities
-2. A few **tables** summarizing nursing home characteristics by contract staffing patterns
+2. A few **tables/plots** summarizing nursing home characteristics by contract staffing patterns
 3. A **map** showing county-level contract staffing prevalence in the Northeast
 
 ## Data sources
