@@ -69,10 +69,14 @@ overall_plot <- ggplot(df_long_overall, aes(x = year_month, y = share_hrs, group
     theme_minimal() +
     theme(
         legend.position = "none",
-        axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
+        axis.text.y = element_text(size = 10),
         strip.text = element_text(size = 10, face = "bold"),
         panel.grid = element_blank(),
-        panel.border = element_rect(color = "black", fill = NA)
+        panel.border = element_rect(color = "black", fill = NA),
+        plot.title = element_text(size = 18),
+        axis.title.x = element_text(size = 16),
+        axis.title.y = element_text(size = 16)
     ) +
     scale_x_discrete(expand = c(0, 0)) +
     scale_y_continuous(expand = c(0, 0))
@@ -80,4 +84,4 @@ overall_plot <- ggplot(df_long_overall, aes(x = year_month, y = share_hrs, group
 print(overall_plot)
 
 # Save overall plot
-ggsave("output/overall_trends.png", plot = overall_plot, width = 14, height = 10, units = "in", dpi = 300)
+ggsave("output/overall_trends.png", plot = overall_plot, width = 10, height = 7, units = "in", dpi = 300)
