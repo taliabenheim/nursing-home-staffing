@@ -44,14 +44,13 @@ summary_table_duration <- create_summary_table(
 )
 writeLines(summary_table_duration$table, "output/table3.md")
 
-# Love plot corresponding to quality measure comparisons in Table 1
+# Love plot corresponding to comparisons in Table 1
 love_plot_df <- summary_table_binary$df %>%
   mutate(
     none_numeric = as.numeric(str_remove(None, " \\(.*")),
-    any_numeric = as.numeric(str_remove(Any, " \\(.*")),
-    diff = any_numeric-none_numeric)
+    any_numeric = as.numeric(str_remove(Any, " \\(.*")))
 
-love_plot <- ggplot(subset(love_plot_df, Category %in% c("Overall Star Rating (1-5)", 
+love_plot_quality <- ggplot(subset(love_plot_df, Category %in% c("Overall Star Rating (1-5)", 
     "Quality Measure Rating (1-5)", "Staffing Rating (1-5)", "Health Inspection Rating (1-5)")),
   aes(y = Category)) +
   geom_point(aes(x = none_numeric, color = "None"), size = 3) +
@@ -64,7 +63,50 @@ love_plot <- ggplot(subset(love_plot_df, Category %in% c("Overall Star Rating (1
   xlab("Star Rating") +
   ylab("Category") +
   ggtitle("Quality Star Ratings by Contract Staffing Use") +
-  theme_minimal()
+  theme_minimal(
+  ) +
+  theme(
+    plot.title = element_text(size = 16),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 12),
+    legend.text = element_text(size = 12),
+    legend.title = element_text(size = 14)
+  )
 
-# Save love plot
-ggsave("output/quality_comparison.png", plot = love_plot, width = 8, height = 6, dpi = 300)
+ggsave("output/quality_comparison.png", plot = love_plot_quality, width = 8, height = 4, dpi = 300)
+
+# Love plot corresponding to Table 2 (quartiles)
+love_plot_df <- summary_table_quartiles$df %>%
+  mutate(
+    q1 = as.numeric(str_remove(`1`, " \\(.*")),
+    q2 = as.numeric(str_remove(`2`, " \\(.*")),
+    q3 = as.numeric(str_remove(`3`, " \\(.*")),
+    q4 = as.numeric(str_remove(`4`, " \\(.*"))
+  )
+
+love_plot_quality_quartiles <- ggplot(subset(love_plot_df, Category %in% c("Overall Star Rating (1-5)", 
+    "Quality Measure Rating (1-5)", "Staffing Rating (1-5)", "Health Inspection Rating (1-5)")),
+  aes(y = Category)) +
+  geom_point(aes(x = q1, color = "Q1"), size = 3) +
+  geom_point(aes(x = q2, color = "Q2"), size = 3) +
+  geom_point(aes(x = q3, color = "Q3"), size = 3) +
+  geom_point(aes(x = q4, color = "Q4"), size = 3) +
+  scale_color_manual(
+    name = "Group", 
+    values = c(Q1 = "#e2e287", Q2 = "#a1dab4", Q3 = "#41b6c4", Q4 = "#225ea8")
+  ) +
+  scale_x_continuous(limits = c(1, 5)) +
+  xlab("Star Rating") +
+  ylab("Category") +
+  ggtitle("Quality Star Ratings by Contract Staffing Quartile") +
+  theme_minimal(
+  ) +
+  theme(
+    plot.title = element_text(size = 16),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 12),
+    legend.text = element_text(size = 12),
+    legend.title = element_text(size = 14)
+  )
+
+ggsave("output/quality_comparison_quartiles.png", plot = love_plot_quality_quartiles, width = 8, height = 4, dpi = 300)
