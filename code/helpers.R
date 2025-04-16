@@ -98,5 +98,8 @@ create_summary_table <- function(df, grouping_var, caption, col_names = NULL) {
       bootstrap_options = c("striped", "hover", "condensed", "responsive")
     )
   
-  summary_table
+  list(
+    df = summary_facility,
+    table = summary_table
+  )
 }
