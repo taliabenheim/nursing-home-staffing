@@ -54,10 +54,16 @@ map_contract_staffing <- ggplot(county_data) +
     na.value = "grey80"
   ) +
   labs(
-    title = "% Contract Staffing Hours by New England County, July 2023",
+    title = "% Contract Staffing Hours in New England Counties, July 2023",
     subtitle = "(Grey = missing)"
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 20),
+    plot.subtitle = element_text(size = 16),
+    legend.title = element_text(size = 16),
+    legend.text = element_text(size = 14)
+  )
 
 # Save map
 ggsave("output/northeast_map.png", plot = map_contract_staffing, width = 12, height = 10, dpi = 300)
